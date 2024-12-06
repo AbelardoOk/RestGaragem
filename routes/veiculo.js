@@ -3,14 +3,14 @@ const express = require("express");
 const route = express.Router();
 
 // Configuração de rotas
-route.post("/:nome&:fabricante$:ano&:combustivel&:cor&:preco", (req, res) => {
+route.post("/", (req, res) => {
   const novoVeiculo = {
-    nome: req.params.nome,
-    fabricante: req.params.fabricante,
-    ano: req.params.ano,
-    combustivel: req.params.combustivel,
-    cor: req.params.cor,
-    preco: req.params.preco,
+    nome: req.body.nome,
+    fabricante: req.body.fabricante,
+    ano: req.body.ano,
+    combustivel: req.body.combustivel,
+    cor: req.body.cor,
+    preco: req.body.preco,
   };
 
   res.status(200).send({
@@ -19,12 +19,13 @@ route.post("/:nome&:fabricante$:ano&:combustivel&:cor&:preco", (req, res) => {
   });
 });
 
-route.put("/:id&:preco", (req, res) => {
+route.put("/", (req, res) => {
+  const { id, preco } = req.body;
   res.status(200).send("Os dados foram devidamente atualizados.");
 });
 
-route.delete("/:id", (res, req) => {
-  const id = req.params.id;
+route.delete("/", (req, res) => {
+  const { id } = req.body;
   res.status(200).send(`O veículo de ID ${id} foi excluído com sucesso.`);
 });
 

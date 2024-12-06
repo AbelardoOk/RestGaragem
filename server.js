@@ -8,6 +8,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Importação das rotas
+const path = require("path");
 const veiculoRoute = require("./routes/veiculo");
 
 // Configuração do host
@@ -16,7 +17,7 @@ const hostname = "127.0.0.1";
 
 // Configuração de rotas
 app.get("/", (req, res) => {
-  res.send("Seja bem vindo à sua concessionária favorita!");
+  res.sendFile(path.join(__dirname, "./src/index.html"));
 });
 
 app.use("/veiculo", veiculoRoute);
